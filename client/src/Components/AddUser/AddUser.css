@@ -1,4 +1,4 @@
-.addNewUser {
+/* .addNewUser {
   grid-column: 1 / span 2;
   display: grid;
   grid-template-columns: 1fr;
@@ -37,11 +37,6 @@
 
 .form-input {
   margin-bottom: 2rem;
-}
-.btn {
-  font-size: 1.6rem;
-  background-color: rgb(13, 67, 184);
-  margin: 2rem 0;
 }
 
 .btn:hover {
@@ -93,4 +88,4 @@
 .close:hover {
   animation: go-up 0.2s ease-in;
   animation-fill-mode: forwards;
-}
+} */

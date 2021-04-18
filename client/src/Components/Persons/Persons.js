@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Person from "./../Person/Person";
 import { getContacts } from "./../../actions/contactActions";
-
+import "./Persons.css";
 function Persons({ getContacts, contact }) {
   const contacts = contact.contacts;
   console.log(contacts);
@@ -13,7 +13,7 @@ function Persons({ getContacts, contact }) {
   }, [getContacts]);
 
   return (
-    <div>
+    <div className="contacts">
       {contacts.map((person) => (
         <Person key={person._id} {...person} />
       ))}

@@ -1,8 +1,4 @@
-.container {
-  width: 95vw;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-content: center;
+.container-fluid {
+  margin: 0;
+  padding: 0;
 }
