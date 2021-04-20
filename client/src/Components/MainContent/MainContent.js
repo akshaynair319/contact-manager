@@ -7,11 +7,9 @@ function MainContent() {
   return (
     <div className="container-mainContent">
       <div className="call-to-action">
-        <p className="text-left">
-          send emails to your friends and co-workers effortlessly.
-        </p>
-        <p className="text-left">
-          Create and schedule meetings like never before
+        <p className="text-center">
+          send emails to your friends and co-workers effortlessly, Create and
+          schedule meetings like never before
         </p>
       </div>
       <div className="button-container">
