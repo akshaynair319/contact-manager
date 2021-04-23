@@ -1,13 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import UserNavbar from "./../../Components/UserNavbar/UserNavbar";
-import NavbarRS from "./../../Components/Navbar/NavbarRS";
+import Contact from "./../../Components/Contact/Contact";
+import AddContact from "./../../Components/AddContact/AddContact";
+import "./UserPage.css";
+import { connect } from "react-redux";
 
-function UserPage() {
+function UserPage({ contacts, userName }) {
   return (
     <div className="user">
-      <UserNavbar />
+      <UserNavbar userName={userName} />
+      <AddContact />
+      <div className="container">
+        <div className="user-title">Your Contacts</div>
+        <div className="user-contacts">
+          {contacts.map((contact) => (
+            <Contact key={contact.id} {...contact} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
-export default UserPage;
+const mapStateToProps = (state) => ({
+  userName: state.user.user_name,
+  contacts: state.user.contacts,
+});
+export default connect(mapStateToProps, null)(UserPage);

@@ -1,0 +1,28 @@
+.user-title {
+  text-align: center;
+  margin: 1rem 0;
+  font-weight: 500;
+  font-size: xx-large;
+}
+
+.add-contact {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.user-contacts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 1000px) {
+  .user-contacts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 800px) {
+  .user-contacts {
+    grid-template-columns: 1fr;
+  }
+}

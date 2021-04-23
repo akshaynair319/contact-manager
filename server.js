@@ -1,25 +1,37 @@
 import express from "express";
-import bodyParser from "body-parser";
 import path from "path";
 import mongoose from "mongoose";
 
+import users from "./routes/api/users.js";
+import userAuth from "./routes/api/userAuth.js";
 import contacts from "./routes/api/contacts.js";
+
 const app = express();
 
 //bosy-parser middleware
-app.use(bodyParser.json());
+app.use(express.json());
 
 //db config
 import db from "./config/keys.js";
 
 //connect to mongo
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(() => console.log("mongoDB connected"))
   .catch((err) => console.log(err));
 
-//use routes: redirecting all requests to './routes/api'
-app.use("/api/contacts", contacts);
+//use routes: register user './routes/api/users'
+app.use("/api/users", users);
+
+//use routes: login user './routes/api/userAuth'
+app.use("/api/userAuth", userAuth);
+
+//use routes: CRUD contacts './routes/api/contacts'
+app.use("/api/users/contacts", contacts);
 
 //Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

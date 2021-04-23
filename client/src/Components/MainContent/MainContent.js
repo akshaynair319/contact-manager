@@ -2,6 +2,7 @@ import React from "react";
 import "./MainContent.css";
 
 import { Button } from "reactstrap";
+import { Link } from "react-router-dom";
 
 function MainContent() {
   return (
@@ -13,12 +14,17 @@ function MainContent() {
         </p>
       </div>
       <div className="button-container">
-        <Button outline color="primary" size="lg" className="user-login">
-          signIN
-        </Button>
-        <Button outline color="success" size="lg" className="user-login">
-          login
-        </Button>
+        <Link to="signUp">
+          <Button outline color="primary" size="lg" className="user-login">
+            SignUp
+          </Button>
+        </Link>
+
+        <Link to="login">
+          <Button outline color="primary" size="lg" className="user-login">
+            Login
+          </Button>
+        </Link>
       </div>
     </div>
   );

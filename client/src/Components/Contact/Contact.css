@@ -1,0 +1,18 @@
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  margin: 1rem 0;
+  grid-gap: 1rem;
+  justify-content: center;
+  grid-gap: 1rem;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem;
+  text-align: center;
+}
+
+.contact-image img {
+  border-radius: 50%;
+  max-width: 100%;
+  height: auto;
+}

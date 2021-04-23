@@ -1,16 +1,38 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Alert,
+} from "reactstrap";
 
 import NavbarRS from "./../../Components/Navbar/NavbarRS";
 import "./SignUp.css";
-const SignUp = () => {
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { register } from "./../../actions/userActions";
+import UserPage from "../UserPage/UserPage";
+const SignUp = ({ register, isAuthorised, errorMessage }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSubmit = () => {
+    register(name, email, password);
+  };
+
+  console.log("error message: ", errorMessage);
+  if (isAuthorised) {
+    return <UserPage />;
+  }
   return (
     <div className="form">
       <NavbarRS />
       <Form className="login-form">
+        {errorMessage ? <Alert color="danger">{errorMessage}</Alert> : null}
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
@@ -41,10 +63,14 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormGroup>
-        <Button>SignUp</Button>
+        <Button onClick={handleSubmit}>SignUp</Button>
       </Form>
     </div>
   );
 };
 
-export default SignUp;
+const mapStateToProps = (state) => ({
+  isAuthorised: state.user.isAuthorised,
+  errorMessage: state.user.msg.msg,
+});
+export default connect(mapStateToProps, { register })(SignUp);

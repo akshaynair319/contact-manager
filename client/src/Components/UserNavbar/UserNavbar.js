@@ -8,19 +8,26 @@ import {
   NavbarText,
 } from "reactstrap";
 
-const UserNavbar = () => {
+import { Link } from "react-router-dom";
+import { logout } from "../../actions/userActions";
+import { connect } from "react-redux";
+const UserNavbar = ({ userName, logout }) => {
   return (
     <div>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">EmailMe</NavbarBrand>
         <Collapse navbar></Collapse>
-        <NavbarText>Welcome User</NavbarText>
+        <NavbarText>Welcome {userName}</NavbarText>
         <NavItem>
-          <NavLink href="/components/">Logout</NavLink>
+          <NavLink>
+            <Link to="/" onClick={() => logout()}>
+              Logout
+            </Link>
+          </NavLink>
         </NavItem>
       </Navbar>
     </div>
   );
 };
 
-export default UserNavbar;
+export default connect(null, { logout })(UserNavbar);

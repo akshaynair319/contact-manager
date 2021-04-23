@@ -1,22 +1,21 @@
 import React, { useState } from "react";
-import "./AddUser.css";
-import { addContact } from "./../../actions/contactActions";
+import "./AddContact.css";
+import { addContact } from "../../actions/userActions";
 import { connect } from "react-redux";
 
-function AddUser({ addContact }) {
+function AddContact({ addContact }) {
   const [modal, setModal] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [image, setImage] = useState("");
 
-  const addNewUser = () => {
+  const addNewContact = () => {
     setModal(true);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addContact(name, email, image);
+    addContact(name, email);
     closeModal();
   };
 
@@ -24,11 +23,10 @@ function AddUser({ addContact }) {
     setModal(false);
     setName("");
     setEmail("");
-    setImage("");
   };
   return (
-    <div className="addNewUser">
-      <button className="btn" onClick={addNewUser}>
+    <div className="addNewContact">
+      <button className="btn" onClick={addNewContact}>
         Add new Contact
       </button>
       {modal && (
@@ -52,19 +50,12 @@ function AddUser({ addContact }) {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="form-input">
-                <label>Image</label>
-                <input
-                  type="text"
-                  value={image}
-                  onChange={(e) => setImage(e.target.value)}
-                />
-              </div>
+
               <div className="buttons">
                 <button type="submit" className="submit">
-                  Create new User
+                  Create new Contact
                 </button>
-                <button className="close" onClick={closeModal}>
+                <button className="closeModal" onClick={closeModal}>
                   close
                 </button>
               </div>
@@ -76,4 +67,4 @@ function AddUser({ addContact }) {
   );
 }
 
-export default connect(null, { addContact })(AddUser);
+export default connect(null, { addContact })(AddContact);

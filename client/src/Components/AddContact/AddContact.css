@@ -1,4 +1,4 @@
-/* .addNewUser {
+.addNewContact {
   grid-column: 1 / span 2;
   display: grid;
   grid-template-columns: 1fr;
@@ -21,11 +21,13 @@
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding-box;
   background-clip: padding-box;
+  display: block;
 }
 
 .modal .modal-header {
   margin: 15px;
   text-align: center;
+  justify-content: center;
 }
 
 .modal .modal-body {
@@ -35,10 +37,19 @@
   align-items: center;
 }
 
+label {
+  margin-right: 1rem;
+}
 .form-input {
   margin-bottom: 2rem;
 }
 
+.btn {
+  background-color: rgba(72, 112, 199, 0.151);
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
 .btn:hover {
   background-color: rgb(72, 112, 199);
   animation: go-up 0.1s ease-in;
@@ -48,6 +59,7 @@
 .btn:active {
   background-color: rgb(72, 112, 199);
   animation: go-down 0.1s ease-in;
+  animation-fill-mode: forwards;
 }
 
 @keyframes go-up {
@@ -59,7 +71,7 @@
   }
 }
 
-@keyframes go-up {
+@keyframes go-down {
   0% {
     transform: translateY(0);
   }
@@ -74,6 +86,7 @@
 }
 .submit {
   background-color: rgb(76, 235, 168);
+  margin-right: 1rem;
 }
 
 .submit:hover {
@@ -81,11 +94,11 @@
   animation-fill-mode: forwards;
 }
 
-.close {
+.closeModal {
   background-color: rgb(218, 21, 14);
 }
 
-.close:hover {
+.closeModal:hover {
   animation: go-up 0.2s ease-in;
   animation-fill-mode: forwards;
-} */
+}

@@ -1,26 +1,31 @@
 import express from "express";
 const router = express.Router();
 
+//getting authentication middleware
+import auth from "./../../middleware/auth.js";
+
 //getting all controller function
-import { getContacts } from "../../Controllers/Contacts.js";
-import { addContact } from "../../Controllers/Contacts.js";
-import { deleteContact } from "../../Controllers/Contacts.js";
+import {
+  getContacts,
+  addContact,
+  deleteContact,
+} from "../../Controllers/ContactCRUD.js";
 
-//setting up routes
+//setting up private routes only accessible to user logged in
 
-//  @route  GET api/items
-//  @desc   Get all items
-//  @access Public
-router.get("/", getContacts);
+//  @route  GET api/users/contacts
+//  @desc   get users contacts
+//  @access Private
+router.get("/", auth, getContacts);
 
-//  @route  POST api/items
-//  @desc   create an item
-//  @access Public
-router.post("/", addContact);
+//  @route  POST api/users/contacts
+//  @desc   create a new contact
+//  @access Private
+router.post("/", auth, addContact);
 
-//  @route  DELETE api/items/:id
-//  @desc   delete an item
-//  @access Public
-router.delete("/:id", deleteContact);
+//  @route  DELETE api/users/contacts
+//  @desc   delete a contact
+//  @access Private
+router.delete("/:id", auth, deleteContact);
 
 export default router;

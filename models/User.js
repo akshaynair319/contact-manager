@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 //creating schema
-const ContactSchema = new Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -12,15 +12,19 @@ const ContactSchema = new Schema({
     type: String,
     required: true,
   },
-  image: {
+  password: {
     type: String,
+    required: true,
   },
-  date: {
+  contacts: {
+    type: Array,
+  },
+  registration_date: {
     type: Date,
     default: Date.now,
   },
 });
 
-const Contact = mongoose.model("contact", ContactSchema);
+const User = mongoose.model("user", UserSchema);
 
-export default Contact;
+export default User;

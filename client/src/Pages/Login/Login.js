@@ -1,15 +1,35 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Alert,
+} from "reactstrap";
 
 import NavbarRS from "./../../Components/Navbar/NavbarRS";
 import "./Login.css";
-const Login = () => {
+import { connect } from "react-redux";
+import { login } from "./../../actions/userActions";
+import UserPage from "../UserPage/UserPage";
+
+const Login = ({ login, isAuthorised, errorMessage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSubmit = () => {
+    login(email, password);
+  };
+  if (isAuthorised) {
+    return <UserPage />;
+  }
   return (
     <div className="form">
       <NavbarRS />
       <Form className="login-form">
+        {errorMessage ? <Alert color="danger">{errorMessage}</Alert> : null}
         <FormGroup>
           <Label for="email">Email</Label>
           <Input
@@ -30,10 +50,14 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormGroup>
-        <Button>Login</Button>
+        <Button onClick={handleSubmit}>Login</Button>
       </Form>
     </div>
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthorised: state.user.isAuthorised,
+  errorMessage: state.user.msg.msg,
+});
+export default connect(mapStateToProps, { login })(Login);
